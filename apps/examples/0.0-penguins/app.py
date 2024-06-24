@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 import seaborn as sns
 
-import shiny.experimental as x
+#import experimental as x
 from shiny import App, Inputs, Outputs, Session, reactive, render, req, ui
 
 sns.set_theme()
@@ -15,22 +15,16 @@ numeric_cols = df.select_dtypes(include=["float64"]).columns.tolist()
 species = df["Species"].unique().tolist()
 species.sort()
 
-app_ui = x.ui.page_sidebar(
-    x.ui.sidebar(
-        ui.input_selectize(
-            "xvar", "X variable", numeric_cols, selected="Bill Length (mm)"
-        ),
-        ui.input_selectize(
-            "yvar", "Y variable", numeric_cols, selected="Bill Depth (mm)"
-        ),
-        ui.input_checkbox_group(
-            "species", "Filter by species", species, selected=species
-        ),
+app_ui = ui.page_sidebar(
+    ui.sidebar(
+        ui.input_selectize("xvar", "X variable", numeric_cols, selected="Bill Length (mm)"),
+        ui.input_selectize("yvar", "Y variable", numeric_cols, selected="Bill Depth (mm)"),
+        ui.input_checkbox_group("species", "Filter by species", species, selected=species),
         ui.hr(),
         ui.input_switch("by_species", "Show species", value=True),
         ui.input_switch("show_margins", "Show marginal plots", value=True),
     ),
-    x.ui.output_plot("scatter"),
+    ui.output_plot("scatter"),
 )
 
 
