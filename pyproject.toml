@@ -1,0 +1,22 @@
+[project]
+name = "try-shiny"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Michael Booth", email = "michael@databooth.com.au"},
+]
+dependencies = [
+    "shiny",
+    "shinylive",
+    "pandas",
+    "plotnine",
+    "seaborn",
+    "jupyter",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "Apache 2"}
+
+
+[tool.pdm]
+distribution = false
